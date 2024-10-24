@@ -31,4 +31,27 @@
       ex2_content.textContent = 'Numer telefonu jest poprawny';
     }
   });
+
+  //Zad 1_2.1 i 1_2.2
+  
+  var ex3_element = document.getElementById('ex3_element');
+  var ex3_one = document.getElementById('ex3_one');
+  var ex3_two = document.getElementById('ex3_two');
+
+  ex3_element.setAttribute('draggable', true);
+
+  ex3_element.ondragstart = function (event) {
+    event.dataTransfer.setData('text', event.target.id);
+  };
+  
+  ex3_one.ondragover = ex3_two.ondragover = function (event) {
+    event.preventDefault();
+  };
+
+  ex3_one.ondrop = ex3_two.ondrop = function (event) {
+    event.preventDefault();
+    var draggedElement = document.getElementById(event.dataTransfer.getData('text'));
+    event.target.appendChild(draggedElement);
+  };
+  
 })();
